@@ -1,20 +1,16 @@
 import * as React from 'react';
+import { useEffect, useContext } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
-import { useState, useEffect, useContext } from 'react';
 import { DataGrid, GridValueFormatterParams } from '@mui/x-data-grid';
 import { Box, Button } from '@mui/material';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 import { changePercent } from '../../helpers/changePercent';
-import { CurrenciesContext, CurrenciesProvider } from './CurrenciesProvider';
-import { ICurrency } from './types';
+import { CurrenciesContext } from './CurrenciesProvider';
 
 const columns = [
-  { field: 'symbol', headerName: 'Symbol', width: 80, cellClassName: 'symbol',
-    renderCell: (currencies: any) => 
-    <Link href={`/markets/${currencies.id}`}>{currencies.id}</Link>,
-  } ,
+  { field: 'symbol', headerName: 'Symbol', width: 80, cellClassName: 'symbol' },
   { field: 'name', headerName: 'Name', width: 100 },
   { field: 'priceUsd', headerName: 'Price USD', width: 140 },
   { 
@@ -58,8 +54,11 @@ export const Currencies = () => {
   return (
     <Box 
     sx={{
-      width: '100%',
-      marginLeft: 8,
+      width: '45%',
+      marginRight: 'auto',
+      marginLeft: 'auto',
+      marginTop: 4,
+      marginBottom: 4,
       '& .color.negative': {
         color: 'red',
       },
@@ -79,8 +78,8 @@ export const Currencies = () => {
         disableRowSelectionOnClick
         slotProps={{
           baseCheckbox: {
-            icon: <FavoriteBorder />,
-            checkedIcon: <Favorite />
+            icon: <StarBorderIcon />,
+            checkedIcon: <StarIcon />
           },
         }}
       />
