@@ -3,13 +3,16 @@ import { useEffect, useContext, useState } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { DataGrid, GridValueFormatterParams } from '@mui/x-data-grid';
-import { Box, Button } from '@mui/material';
+import { Box, Button, CircularProgress } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import { useRouter } from 'next/router';
-import { ICurrency, ICurrencyState } from './currencies/types';
+import { ICurrency, ICurrencyHistory, ICurrencyState } from './currencies/types';
 import { changePercent } from '@/helpers/changePercent';
 import { initialState } from './currencies/CurrenciesProvider/initialState';
+import { CryptoChart } from './СryptoСhart';
+import { fetchCurrencyCandles } from '@/api/currencies';
+import { timeParse } from "d3-time-format";
 
 const columns = [
   { field: 'symbol', headerName: 'Symbol', width: 80, cellClassName: 'symbol' },
@@ -44,7 +47,8 @@ const columns = [
 
 export const CurrencyDataGrid = () => {
   const { query } = useRouter();
-  const [ currency, setCurrency ] = useState<ICurrency>(ICurrencyState);
+  const [ currency, setCurrency ] = useState<ICurrency | null>(null);
+  const [ history, setHistory ] = useState<ICurrencyHistory[] | null>(null);
 
   useEffect(() => {
     if (!query.id) return;
@@ -54,9 +58,26 @@ export const CurrencyDataGrid = () => {
       .then(({ data }: { data: ICurrency }) => {
         setCurrency(data);
       });
+    
+    fetchCurrencyCandles(query.id.toString())
+      .then(( data : ICurrencyHistory [] ) => {
+        setHistory(data.map(([ date, open, high, low, close ] : any) => ({
+          date: new Date(date),
+          open,
+          high,
+          low,
+          close,
+          volume: 0
+        })));
+      });
   }, [ query ])
 
-  return (
+  return !currency ? (
+    <CircularProgress
+      size={36}
+      style={{ marginLeft: '50%', marginTop: 12 }}
+    />
+  ) : (
     <Box 
     sx={{
       width: '45%',
@@ -78,7 +99,7 @@ export const CurrencyDataGrid = () => {
       <DataGrid
         hideFooterPagination
         hideFooter
-        rows={[currency]}
+        rows={[ currency ]}
         columns={columns}
         disableRowSelectionOnClick
         slotProps={{
@@ -89,6 +110,15 @@ export const CurrencyDataGrid = () => {
         }
       }
       />
+      
+      {!history ? (
+        <CircularProgress
+          size={36}
+          style={{ marginLeft: '50%', marginTop: 12 }}
+        />
+      ) : (
+        <CryptoChart data={history} />
+      )}
     </Box>
   );
 }

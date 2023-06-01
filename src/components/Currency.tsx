@@ -4,6 +4,7 @@ import { useState, useEffect, useContext } from 'react';
 import { CircularProgress, Grid, Typography } from '@mui/material';
 import { ICurrency } from './currencies/types';
 import { fetchCurrency } from '@/api/currencies';
+import { CryptoChart } from './СryptoСhart';
 
 export const Currency = () => {
   const { query } = useRouter();
@@ -28,29 +29,32 @@ export const Currency = () => {
       style={{ marginLeft: '50%', marginTop: 12 }}
     />
   ) : (
-    <Grid container spacing={2}>
-      <Grid item>
-        <Typography>
-          {currency.name} course
-        </Typography>
-      </Grid>
-      <Grid item>
-        <Typography>
-          $ {currency.priceUsd} 
-        </Typography>
-      </Grid>
+    <>
+      <Grid container spacing={2}>
+        <Grid item>
+          <Typography>
+            {currency.name} course
+          </Typography>
+        </Grid>
+        <Grid item>
+          <Typography>
+            $ {currency.priceUsd} 
+          </Typography>
+        </Grid>
 
-      <Grid item>
-        <Typography>
-          {currency.changePercent24Hr} changePercent24Hr
-        </Typography>
-      </Grid>
+        <Grid item>
+          <Typography>
+            {currency.changePercent24Hr} changePercent24Hr
+          </Typography>
+        </Grid>
 
-      <Grid item>
-        <Typography>
-          {currency.marketCapUsd} marketCapUsd
-        </Typography>
+        <Grid item>
+          <Typography>
+            {currency.marketCapUsd} marketCapUsd
+          </Typography>
+        </Grid>
       </Grid>
-    </Grid>
+      {/* <CryptoChart /> */}
+    </>
   );
 };

@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/currencies/CurrenciesProvider", "src/pages/_document.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/components/currencies/CurrenciesProvider", "src/pages/_document.js", "src/components/СryptoСhart.js"],
   "exclude": ["node_modules"]
 }

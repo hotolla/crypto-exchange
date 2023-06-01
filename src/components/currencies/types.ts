@@ -16,4 +16,12 @@ export const ICurrencyState: ICurrency = {
   changePercent24Hr: '',
   volumeUsd24Hr: '',
   marketCapUsd: '',
-}
+};
+
+export interface ICurrencyHistory {
+  [index: number]: [];
+  // [open: number]: number;
+  // [high: number]: number;
+  // [low: number]: number;
+  // [close: number]: number;
+} 
