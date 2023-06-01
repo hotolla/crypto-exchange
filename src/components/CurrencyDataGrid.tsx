@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { useEffect, useContext } from 'react';
+import { useEffect, useContext, useState } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { DataGrid, GridValueFormatterParams } from '@mui/x-data-grid';
 import { Box, Button } from '@mui/material';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
-import { changePercent } from '../../helpers/changePercent';
-import { CurrenciesContext } from './CurrenciesProvider';
+import { useRouter } from 'next/router';
+import { ICurrency, ICurrencyState } from './currencies/types';
+import { changePercent } from '@/helpers/changePercent';
+import { initialState } from './currencies/CurrenciesProvider/initialState';
 
 const columns = [
   { field: 'symbol', headerName: 'Symbol', width: 80, cellClassName: 'symbol' },
@@ -35,21 +37,24 @@ const columns = [
     field: 'Buy',
     headerName: '',
     width: 80,
-    renderCell: (currencies: any) => 
-    <Link href={`/markets/${currencies.id}`} color='info.main'><Button>More</Button></Link>,
+    renderCell: (currency: any) => 
+    <Link href={`/markets/${currency.id}`} color='info.main'><Button>Buy</Button></Link>,
   },
 ];
 
-export const Currencies = () => {
-  const { currencies, fetchCurrencies } = useContext(CurrenciesContext);
+export const CurrencyDataGrid = () => {
+  const { query } = useRouter();
+  const [ currency, setCurrency ] = useState<ICurrency>(ICurrencyState);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetchCurrencies();
-    }, 3000);
+    if (!query.id) return;
 
-    return () => clearInterval(interval);
-  }, []);
+    fetch(`https://api.coincap.io/v2/assets/${query.id}`)
+      .then((response) => response.json())
+      .then(({ data }: { data: ICurrency }) => {
+        setCurrency(data);
+      });
+  }, [ query ])
 
   return (
     <Box 
@@ -71,8 +76,9 @@ export const Currencies = () => {
     }}
     >
       <DataGrid
-        checkboxSelection
-        rows={currencies}
+        hideFooterPagination
+        hideFooter
+        rows={[currency]}
         columns={columns}
         disableRowSelectionOnClick
         slotProps={{
@@ -80,7 +86,8 @@ export const Currencies = () => {
             icon: <StarBorderIcon />,
             checkedIcon: <StarIcon />
           },
-        }}
+        }
+      }
       />
     </Box>
   );

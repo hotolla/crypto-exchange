@@ -27,7 +27,6 @@ export const CurrenciesProvider = ({ children }: ICurrenciesProviderProps) => {
     currenciesApi.fetchCurrencies()
       .then(({ data }: { data: ICurrency[] }) => {
         dispatch({ type: Types.FetchCurrencies, payload: data.map(({
-          isFavorite,
           id,
           symbol,
           name,
@@ -36,7 +35,6 @@ export const CurrenciesProvider = ({ children }: ICurrenciesProviderProps) => {
           volumeUsd24Hr,
           marketCapUsd
         }) => ({
-          isFavorite,
           id,
           symbol,
           name,

@@ -10,8 +10,8 @@
     "lint-fix": "eslint ./src --fix"
   },
   "dependencies": {
-    "@emotion/react": "^11.10.8",
-    "@emotion/styled": "^11.10.8",
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.2",
     "@mui/x-data-grid": "^6.3.0",
@@ -20,6 +20,8 @@
     "@types/react-dom": "18.2.1",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
+    "i18next": "^20.3.2",
+    "i18next-browser-languagedetector": "^6.1.2",
     "next": "13.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

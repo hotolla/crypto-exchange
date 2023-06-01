@@ -7,3 +7,13 @@ export interface ICurrency {
   volumeUsd24Hr: string;
   marketCapUsd: string;
 };
+
+export const ICurrencyState: ICurrency = {
+  id: '',
+  symbol: '',
+  name: '',
+  priceUsd: '',
+  changePercent24Hr: '',
+  volumeUsd24Hr: '',
+  marketCapUsd: '',
+}
