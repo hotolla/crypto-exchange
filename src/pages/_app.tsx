@@ -1,6 +1,5 @@
-import '@/styles/globals.css';
 import { useCallback, useState } from 'react';
-import { CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import type { AppProps } from 'next/app'
 import { darkTheme, lightTheme } from '../themes/themes';
 import { Layout } from '@/components/Layout';
@@ -16,14 +15,15 @@ export default function App({
   pageProps
 }: AppProps & any) {
   const [ isDarkTheme, setIsDarkTheme ] = useState(false);
+  const theme = isDarkTheme ? darkTheme : lightTheme;
 
   const handleChangeTheme = useCallback(() => {
-    setIsDarkTheme(!isDarkTheme);
+    setIsDarkTheme((isDarkTheme) => !isDarkTheme);
   }, [ isDarkTheme ]);
 
   return (
     <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Layout isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}>
           <Component {...pageProps} />

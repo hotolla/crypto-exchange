@@ -13,6 +13,7 @@ import { initialState } from './currencies/CurrenciesProvider/initialState';
 import { CryptoChart } from './СryptoСhart';
 import { fetchCurrencyCandles } from '@/api/currencies';
 import { timeParse } from "d3-time-format";
+import { Buy } from './Buy';
 
 const columns = [
   { field: 'symbol', headerName: 'Symbol', width: 80, cellClassName: 'symbol' },
@@ -119,6 +120,7 @@ export const CurrencyDataGrid = () => {
       ) : (
         <CryptoChart data={history} />
       )}
+      <Buy priceUsd={+currency.priceUsd}/>
     </Box>
   );
 }

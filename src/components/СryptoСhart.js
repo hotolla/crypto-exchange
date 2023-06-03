@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+import Box from '@mui/material/Box';
 
 import { format } from "d3-format";
 import { timeFormat } from "d3-time-format";
@@ -26,10 +26,14 @@ import {
 	MovingAverageTooltip,
 } from "react-stockcharts/lib/tooltip";
 import { ema, heikinAshi, sma } from "react-stockcharts/lib/indicator";
-import { fitWidth } from "react-stockcharts/lib/helper";
+// import { fitWidth } from "react-stockcharts/lib/helper";
 import { last } from "react-stockcharts/lib/utils";
 
-export const CryptoChart = (props) => {
+import useDimensions from 'react-use-dimensions';
+
+export const CryptoChart = ({ type = 'svg', data: initialData }) => {
+  const [ rootRef, { width, height }] = useDimensions()
+
 		const ha = heikinAshi();
 		const ema20 = ema()
 			.id(0)
@@ -49,8 +53,6 @@ export const CryptoChart = (props) => {
 			.merge((d, c) => { d.smaVolume50 = c; })
 			.accessor(d => d.smaVolume50);
 
-		const { type, data: initialData, width, ratio } = props;
-
 		const calculatedData = smaVolume50(ema50(ema20(ha(initialData))));
 		const xScaleProvider = discontinuousTimeScaleProvider
 			.inputDateAccessor(d => d.date);
@@ -66,8 +68,10 @@ export const CryptoChart = (props) => {
 		const xExtents = [start, end];
 
 		return (
-			<ChartCanvas height={400}
-				ratio={ratio}
+      <Box ref={rootRef}>
+			<ChartCanvas
+        height={400}
+				ratio={1}
 				width={width}
 				margin={{ left: 80, right: 80, top: 10, bottom: 30 }}
 				type={type}
@@ -161,6 +165,7 @@ export const CryptoChart = (props) => {
 				</Chart>
 				<CrossHairCursor />
 			</ChartCanvas>
+      </Box>
 		);
 }
 
