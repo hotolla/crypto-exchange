@@ -8,11 +8,11 @@ export type Action =
 
 export const reducer = (state: ICurrenciesState, { type, payload }: Action) => {
   switch (type) {
-  case Types.FetchCurrencies:
-    return { ...state, currencies: payload };
+    case Types.FetchCurrencies:
+      return { ...state, currencies: payload };
 
-  case Types.FetchCurrencies:
-    return { ...state, currencies: payload };
+    case Types.FetchCurrencies:
+      return { ...state, currencies: payload };
 
     default:
     return state;

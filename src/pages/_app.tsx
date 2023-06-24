@@ -6,7 +6,6 @@ import { Layout } from '@/components/Layout';
 import createEmotionCache from "../themes/createEmotionCache";
 import { CacheProvider } from "@emotion/react";
 
-// const isDarkThemeKey = 'isDarkTheme';
 const clientSideEmotionCache = createEmotionCache();
 
 export default function App({
