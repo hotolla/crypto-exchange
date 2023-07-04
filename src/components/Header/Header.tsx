@@ -10,10 +10,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { useTranslation } from 'react-i18next';
 import AdbIcon from '@mui/icons-material/Adb';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import { Switch } from '@mui/material';
+import { LangSwitcher } from './LangSwitcher';
 
 const pages = ['Currencies', 'Trade', 'Orders'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -26,6 +28,7 @@ interface Props {
 export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  // const { t } = useTranslation();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -47,6 +50,7 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
             <CurrencyBitcoinIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
+            <Typography variant="h5" align="center">re</Typography>
           {/* for switch menu position  */}
           {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}> */}
             {/* <IconButton
@@ -128,6 +132,7 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
             </Menu>
           </Box>
           <Switch checked={isDarkTheme} onChange={onThemeToggle} />
+          <LangSwitcher />         
         </Toolbar>
       </Container>
     </AppBar>

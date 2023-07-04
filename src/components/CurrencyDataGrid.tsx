@@ -80,22 +80,22 @@ export const CurrencyDataGrid = () => {
     />
   ) : (
     <Box 
-    sx={{
-      width: '45%',
-      marginRight: 'auto',
-      marginLeft: 'auto',
-      marginTop: 4,
-      marginBottom: 4,
-      '& .color.negative': {
-        color: 'error.main',
-      },
-      '& .color.positive': {
-        color: 'success.main',
-      },
-      '& .symbol': {
-        fontWeight: 'bold',
-      },
-    }}
+      sx={{
+        width: '45%',
+        marginRight: 'auto',
+        marginLeft: 'auto',
+        marginTop: 4,
+        marginBottom: 4,
+        '& .color.negative': {
+          color: 'error.main',
+        },
+        '& .color.positive': {
+          color: 'success.main',
+        },
+        '& .symbol': {
+          fontWeight: 'bold',
+        },
+      }}
     >
       <DataGrid
         hideFooterPagination
