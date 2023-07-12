@@ -20,8 +20,12 @@ export const ICurrencyState: ICurrency = {
 
 export interface ICurrencyHistory {
   [index: number]: [];
-  // [open: number]: number;
-  // [high: number]: number;
-  // [low: number]: number;
-  // [close: number]: number;
-} 
+} ;
+
+export interface ICurrencyCode {
+  code: any
+};
+
+export const ICurrencyCodeState: ICurrencyCode =  {
+  code: 'EUR'
+}

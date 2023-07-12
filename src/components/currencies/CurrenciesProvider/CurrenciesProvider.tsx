@@ -25,7 +25,7 @@ export const CurrenciesProvider = ({ children }: ICurrenciesProviderProps) => {
 
   const fetchCurrencies = () => {
     currenciesApi.fetchCurrencies()
-      .then(({ data }: { data: ICurrency[] }) => {
+      .then(({data }: { data: ICurrency[] }) => {
         dispatch({ type: Types.FetchCurrencies, payload: data.map(({
           id,
           symbol,

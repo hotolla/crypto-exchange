@@ -11,7 +11,7 @@ import { ICurrency, ICurrencyHistory, ICurrencyState } from './currencies/types'
 import { changePercent } from '@/helpers/changePercent';
 import { initialState } from './currencies/CurrenciesProvider/initialState';
 import { CryptoChart } from './СryptoСhart';
-import { fetchCurrencyCandles } from '@/api/currencies';
+import { fetchCurrency, fetchCurrencyCandles } from '@/api/currencies';
 import { timeParse } from "d3-time-format";
 import { Buy } from './Buy';
 
@@ -51,14 +51,35 @@ export const CurrencyDataGrid = () => {
   const [ currency, setCurrency ] = useState<ICurrency | null>(null);
   const [ history, setHistory ] = useState<ICurrencyHistory[] | null>(null);
 
-  useEffect(() => {
-    if (!query.id) return;
+  // useEffect(() => {
+  //   if (!query.id) return;
 
-    fetch(`https://api.coincap.io/v2/assets/${query.id}`)
-      .then((response) => response.json())
-      .then(({ data }: { data: ICurrency }) => {
-        setCurrency(data);
-      });
+  //   fetch(`https://api.coincap.io/v2/assets/${query.id}`)
+  //     .then((response) => response.json())
+  //     .then(({ data }: { data: ICurrency }) => {
+  //       setCurrency(data);
+  //     });
+    
+    // fetchCurrencyCandles(query.id.toString())
+    //   .then(( data : ICurrencyHistory [] ) => {
+    //     setHistory(data.map(([ date, open, high, low, close ] : any) => ({
+    //       date: new Date(date),
+    //       open,
+    //       high,
+    //       low,
+    //       close,
+    //       volume: 0
+    //     })));
+    //   });
+  // }, [ query ])
+
+    useEffect(() => {
+      if (!query.id) return;
+
+      fetchCurrency(query.id.toString())
+        .then(({ data }: { data: ICurrency }) => {
+          setCurrency(data);
+        });
     
     fetchCurrencyCandles(query.id.toString())
       .then(( data : ICurrencyHistory [] ) => {
@@ -71,7 +92,7 @@ export const CurrencyDataGrid = () => {
           volume: 0
         })));
       });
-  }, [ query ])
+  }, [ query ]);
 
   return !currency ? (
     <CircularProgress

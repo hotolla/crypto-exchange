@@ -40,13 +40,16 @@ export const Buy = ({ priceUsd }: IProps) => {
 
   const handleCurrencyChange = ({ target: { value }}: ChangeEvent<HTMLInputElement>) => {
     setCurrency(value as CurrencyCode);
-    fetchExchangeRates().then(({
-      
-    }) => {
-
+    fetchExchangeRates({
+      params: {
+        currencies: value,
+      }
+    }).then(({ data }) => {
+      console.log(data);
+      setExchangeRate(data[value]);
     })
   };
-
+  // console.log({exchangeRate});
   return (
 		<>
 			<Grid
@@ -107,7 +110,7 @@ export const Buy = ({ priceUsd }: IProps) => {
 				</Grid>
 		</Grid>
 
-    <Typography textAlign="center" mt={2}>Estimated price: 1 USD ≈ 0.927 {currency}</Typography>
+    <Typography textAlign="center" mt={2}>Estimated price: 1 USD ≈ {exchangeRate}{currency}</Typography>
 	</>
 	);
 };
