@@ -8,6 +8,8 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 import { changePercent } from '../../helpers/changePercent';
 import { CurrenciesContext } from './CurrenciesProvider';
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { fetchCurrencies } from '@/store/currenciesSlice';
 
 const columns = [
   { field: 'symbol', headerName: 'Symbol', width: 80, cellClassName: 'symbol' },
@@ -41,11 +43,12 @@ const columns = [
 ];
 
 export const Currencies = () => {
-  const { currencies, fetchCurrencies } = useContext(CurrenciesContext);
-
+  const dispatch = useAppDispatch();
+  const currencies = useAppSelector((state) => state.currencies.currencies);
+  
   useEffect(() => {
     const interval = setInterval(() => {
-      fetchCurrencies();
+      dispatch(fetchCurrencies());
     }, 3000);
 
     return () => clearInterval(interval);

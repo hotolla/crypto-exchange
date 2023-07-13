@@ -1,13 +1,11 @@
 import * as React from 'react';
 import { Currencies } from '@/components/currencies/Currencies';
-import { CurrenciesProvider } from '@/components/currencies/CurrenciesProvider';
-import { Crypto } from '@/components/Crypto';
+import { Provider } from 'react-redux'
 
 export default function Markets() {
   return (
-    <CurrenciesProvider>
+    <Provider store={store}>
       <Currencies />
-      {/* <Crypto/> */}
-    </CurrenciesProvider>
+    </Provider>
   );
 };
