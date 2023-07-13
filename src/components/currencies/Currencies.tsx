@@ -42,7 +42,7 @@ const columns = [
 
 export const Currencies = () => {
   const { currencies, fetchCurrencies } = useContext(CurrenciesContext);
-
+ 
   useEffect(() => {
     const interval = setInterval(() => {
       fetchCurrencies();
