@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useEffect, useContext, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { DataGrid, GridValueFormatterParams } from '@mui/x-data-grid';
@@ -9,10 +9,8 @@ import StarIcon from '@mui/icons-material/Star';
 import { useRouter } from 'next/router';
 import { ICurrency, ICurrencyHistory, ICurrencyState } from './currencies/types';
 import { changePercent } from '@/helpers/changePercent';
-import { initialState } from './currencies/CurrenciesProvider/initialState';
 import { CryptoChart } from './СryptoСhart';
 import { fetchCurrency, fetchCurrencyCandles } from '@/api/currencies';
-import { timeParse } from "d3-time-format";
 import { Buy } from './Buy';
 
 const columns = [

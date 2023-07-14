@@ -30,7 +30,7 @@ const currencies = [
 export const Buy = ({ priceUsd }: IProps) => {
 	const [ currencyAmount, setCurrencyAmount ] = useState(20);
 	const [ currency, setCurrency ] = useState(CurrencyCode.USD);
-	const [ exchangeRate, setExchangeRate ] = useState(0);
+	const [ exchangeRate, setExchangeRate ] = useState(1);
 	const [ cryptoAmount, setCryptoAmount ] = useState(currencyAmount / priceUsd);
 
   const handleCurrencyAmountChange = ({ target: { value }}: ChangeEvent<HTMLInputElement>) => {
@@ -110,7 +110,7 @@ export const Buy = ({ priceUsd }: IProps) => {
 				</Grid>
 		</Grid>
 
-    <Typography textAlign="center" mt={2}>Estimated price: 1 USD ≈ {exchangeRate}{currency}</Typography>
+    <Typography textAlign="center" mt={2}>Estimated price: 1 USD ≈ {exchangeRate} {currency}</Typography>
 	</>
 	);
 };
