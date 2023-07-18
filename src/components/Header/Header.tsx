@@ -46,11 +46,11 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
             <CurrencyBitcoinIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
-            <Typography variant="h5" align="center">re</Typography>
+            <Typography variant="h5" align="center">Crypto exchange</Typography>
           {/* for switch menu position  */}
           {/* <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}> */}
             {/* <IconButton
