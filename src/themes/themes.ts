@@ -38,6 +38,15 @@ export const lightTheme = createTheme({
     button: {
       fontWeight: 600
     }
+  },
+  components: {
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          colorPrimary: 'red'
+        }
+      }
+    }
   }
 });
 

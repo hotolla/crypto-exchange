@@ -46,11 +46,11 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
             <CurrencyBitcoinIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
-            <Typography variant="h5" align="center">re</Typography>
+            <Typography variant="h5" align="center">Crypto exchange</Typography>
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -67,7 +67,7 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <AccountCircleIcon />
+                <AccountCircleIcon/>
               </IconButton>
             </Tooltip>
             <Menu
