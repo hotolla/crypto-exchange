@@ -4,8 +4,7 @@ import type { AppProps } from 'next/app';
 import { CacheProvider } from "@emotion/react";
 import i18next from 'i18next';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { darkTheme, lightTheme } from '../themes/themes';
+import { darkTheme, lightTheme } from '../themes';
 import { Layout } from '@/components/Layout';
 import createEmotionCache from "../themes/createEmotionCache";
 

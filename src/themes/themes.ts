@@ -1,4 +1,4 @@
-import { createTheme, Theme } from '@mui/material';
+import { createTheme } from '@mui/material';
 
 export const lightTheme = createTheme({
   palette: {
@@ -24,19 +24,25 @@ export const lightTheme = createTheme({
   },
   typography: {
     caption: {
-      fontFamily: 'Lato',
       lineHeight: 1.92
     },
     fontWeightLight: 100,
     h1: {
-      fontFamily: 'Lora',
       lineHeight: 1.15
     },
     h2: {
-      fontFamily: 'Lato'
     },
     button: {
       fontWeight: 600
+    }
+  },
+  components: {
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          color: '#FFFFFF'
+        }
+      }
     }
   }
 });
