@@ -9,10 +9,12 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import LoginIcon from '@mui/icons-material/Login';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import { Switch } from '@mui/material';
 import { LangSwitcher } from './LangSwitcher';
+import { Link } from 'react-router-dom';
 
 const pages = ['Currencies', 'Trade', 'Orders'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -85,6 +87,14 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
               ))}
             </Menu>
           </Box>
+          <Button
+              color="inherit"
+              startIcon={<LoginIcon />}
+              component={Link}
+              to="/login"
+          >
+            Login to account
+          </Button>
           <Switch checked={isDarkTheme} onChange={onThemeToggle} />
           <LangSwitcher />         
         </Toolbar>
