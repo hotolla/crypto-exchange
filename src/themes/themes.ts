@@ -43,7 +43,7 @@ export const lightTheme = createTheme({
     MuiSvgIcon: {
       styleOverrides: {
         root: {
-          colorPrimary: 'red'
+          color: '#FFFFFF'
         }
       }
     }
