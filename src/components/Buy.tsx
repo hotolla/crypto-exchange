@@ -37,8 +37,16 @@ export const Buy = ({ priceUsd }: IProps) => {
     setCurrencyAmount(+value);
     setCryptoAmount(+value / priceUsd);
   };
+ //  useEffect(()=> {
+ //    setExchangeRate(exchangeRate)
+ //    console.log(exchangerate);
+ // }, [exchangeRate])
 
   const handleCurrencyChange = ({ target: { value }}: ChangeEvent<HTMLInputElement>) => {
+    let buyPrice = priceUsd / exchangeRate;
+    setCryptoAmount(+value / priceUsd);
+    console.log(value, priceUsd, exchangeRate);
+// setcryptoAmount(buyCrypto(+value, buyPrice));
     setCurrency(value as CurrencyCode);
     fetchExchangeRates({
       params: {
