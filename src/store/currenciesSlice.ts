@@ -1,4 +1,5 @@
 import { Currencies } from '@/components/currencies/Currencies';
+// @ts-ignore
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -20,7 +21,7 @@ const initialState:CurrenciesState = {
   currencies: [],
 };
 
-export const fetchCurrencies = createAsyncThunk('currencies/fetch', async (thunkAPI) => {
+export const fetchCurrencies = createAsyncThunk('currencies/fetch', async () => {
   const response = await fetch('https://api.coincap.io/v2/assets', {
     method: 'GET'
   });
@@ -39,20 +40,20 @@ export const currenciesSlice = createSlice({
   name: 'currency',
   initialState,
   reducers: {
-    addCurrencies: (state, action:PayloadAction<ICurrency>) => {
+    addCurrencies: (state: CurrenciesState, action:PayloadAction<ICurrency>) => {
       state.currencies.push(action.payload)
     }
   },
 
-  extraReducers: (builder) => {
-    builder.addCase(fetchCurrencies.pending, (state) => {
+  extraReducers: (builder: any) => {
+    builder.addCase(fetchCurrencies.pending, (state: CurrenciesState) => {
       //TODO
       // state.loading = true;
     });
-    builder.addCase(fetchCurrencies.fulfilled, (state, action) => {
+    builder.addCase(fetchCurrencies.fulfilled, (state: CurrenciesState, action: PayloadAction) => {
       state.currencies = action.payload;
     });
-    builder.addCase(fetchCurrencies.rejected, (state, action) => {
+    builder.addCase(fetchCurrencies.rejected, (state: CurrenciesState, action: PayloadAction) => {
       // TODO
       // state.loading = false;
       // state.errorMessage = 'ERROR!';

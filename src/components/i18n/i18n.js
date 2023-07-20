@@ -1,6 +1,5 @@
 import i18next from 'i18next';
 import moment from 'moment';
-import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { languagesMap } from './languagesMap';
 import { en, ru, ua } from './resources';
@@ -12,7 +11,6 @@ const handleLangChange = (lang) => {
 
   document.documentElement.setAttribute('lang', lang);
   document.title = i18next.t('head.title');
-  // document.querySelector('meta[name="description"]').setAttribute('content', i18next.t('head.title'));
 };
 
 export const initI18n = () => {
@@ -21,7 +19,7 @@ i18next
   // learn more: https://github.com/i18next/i18next-browser-languageDetector
   .use(LanguageDetector)
   // pass the i18n instance to react-i18next.
-  .use(initReactI18next)
+  .use(i18next)
   // init i18next
   // for all options read: https://www.i18next.com/overview/configuration-options
   .init({
@@ -49,6 +47,3 @@ i18next
 
 i18next.on('languageChanged', handleLangChange);
 };
-
-// export default i18next;
-

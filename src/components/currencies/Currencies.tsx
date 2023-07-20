@@ -74,6 +74,7 @@ export const Currencies = () => {
         checkboxSelection
         rows={currencies}
         columns={columns}
+        sx={{marginTop:8}}
         disableRowSelectionOnClick
         slotProps={{
           baseCheckbox: {

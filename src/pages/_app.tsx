@@ -36,8 +36,6 @@ export default function App({
     };
   }, []);
   
-  console.log(process.env.REACT_APP_FREE_CURRENCY_API_KEY);
-
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={theme}>

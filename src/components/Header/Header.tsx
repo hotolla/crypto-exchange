@@ -16,6 +16,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import { Switch } from '@mui/material';
 import { LangSwitcher } from './LangSwitcher';
+import LoginIcon from '@mui/icons-material/Login';
+import Link from 'next/link';
 
 const pages = ['Currencies', 'Trade', 'Orders'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -66,7 +68,7 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
                 <AccountCircleIcon/>
               </IconButton>
             </Tooltip>
@@ -93,6 +95,15 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
               ))}
             </Menu>
           </Box>
+
+         < Link href='/registration' passHref legacyBehavior>
+            <Button
+              color="inherit"
+              startIcon={<LoginIcon />}
+            >
+              Login to account
+            </Button>
+          </Link>
           <Switch checked={isDarkTheme} onChange={onThemeToggle} />
           <LangSwitcher />         
         </Toolbar>

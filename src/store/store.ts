@@ -1,4 +1,6 @@
+// @ts-ignore
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
+// @ts-ignore
 import { configureStore } from '@reduxjs/toolkit';
 import currenciesReducer from './currenciesSlice';
 
