@@ -1,9 +1,9 @@
-import { ReactNode, useState, useReducer, createContext, useRef, useEffect } from "react";
-import { ICurrency } from "../types";
+import { ReactNode, useState, useReducer, createContext, useRef, useEffect } from 'react';
+import { ICurrency } from '../types';
 import * as currenciesApi from '../../../api/currencies';
-import { reducer } from "./reducer";
-import { ICurrenciesState, initialState } from "./initialState";
-import { Types } from "./types";
+import { reducer } from './reducer';
+import { ICurrenciesState, initialState } from './initialState';
+import { Types } from './types';
 
 interface ICurrenciesProviderProps {
   children: ReactNode;
@@ -25,7 +25,7 @@ export const CurrenciesProvider = ({ children }: ICurrenciesProviderProps) => {
 
   const fetchCurrencies = () => {
     currenciesApi.fetchCurrencies()
-      .then(({data }: { data: ICurrency[] }) => {
+      .then(({ data }: { data: ICurrency[] }) => {
         dispatch({ type: Types.FetchCurrencies, payload: data.map(({
           id,
           symbol,
@@ -42,7 +42,7 @@ export const CurrenciesProvider = ({ children }: ICurrenciesProviderProps) => {
           changePercent24Hr,
           volumeUsd24Hr,
           marketCapUsd
-        }))})
+        })) });
       });
   };
 
@@ -65,4 +65,4 @@ export const CurrenciesProvider = ({ children }: ICurrenciesProviderProps) => {
       {children}
     </CurrenciesContext.Provider>
   );
-}
+};

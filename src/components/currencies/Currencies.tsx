@@ -25,9 +25,9 @@ const columns = [
 
       return clsx('color', {
         negative: params.value < 0,
-        positive: params.value > 0,
+        positive: params.value > 0
       });
-    },
+    }
   },
   { field: 'volumeUsd24Hr', headerName: 'Volume Usd 24Hr', width: 120 },
   { field: 'marketCapUsd', headerName: 'market capital. Usd', width: 120 },
@@ -36,8 +36,8 @@ const columns = [
     headerName: '',
     width: 80,
     renderCell: (currencies: any) => 
-    <Link href={`/markets/${currencies.id}`} color='info.main'><Button>More</Button></Link>,
-  },
+    <Link href={`/markets/${currencies.id}`} color="info.main"><Button>More</Button></Link>
+  }
 ];
 
 export const Currencies = () => {
@@ -60,29 +60,29 @@ export const Currencies = () => {
       marginTop: 4,
       marginBottom: 4,
       '& .color.negative': {
-        color: 'error.main',
+        color: 'error.main'
       },
       '& .color.positive': {
-        color: 'success.main',
+        color: 'success.main'
       },
       '& .symbol': {
-        fontWeight: 'bold',
-      },
+        fontWeight: 'bold'
+      }
     }}
     >
       <DataGrid
         checkboxSelection
         rows={currencies}
         columns={columns}
-        sx={{marginTop:8}}
+        sx={{ marginTop:8 }}
         disableRowSelectionOnClick
         slotProps={{
           baseCheckbox: {
             icon: <StarBorderIcon />,
             checkedIcon: <StarIcon />
-          },
+          }
         }}
       />
     </Box>
   );
-}
+};

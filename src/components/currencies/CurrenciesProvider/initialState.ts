@@ -5,5 +5,5 @@ export interface ICurrenciesState {
 };
 
 export const initialState: ICurrenciesState = {
-  currencies: [],
+  currencies: []
 };

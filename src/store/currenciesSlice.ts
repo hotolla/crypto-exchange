@@ -18,7 +18,7 @@ interface CurrenciesState {
 };
 
 const initialState:CurrenciesState = {
-  currencies: [],
+  currencies: []
 };
 
 export const fetchCurrencies = createAsyncThunk('currencies/fetch', async () => {
@@ -34,14 +34,14 @@ export const fetchCurrencies = createAsyncThunk('currencies/fetch', async () => 
   // const response = await axios.get('https://api.coincap.io/v2/assets').then(({ data }) => {
   //   return data;
   // });
-})
+});
 
 export const currenciesSlice = createSlice({
   name: 'currency',
   initialState,
   reducers: {
     addCurrencies: (state: CurrenciesState, action:PayloadAction<ICurrency>) => {
-      state.currencies.push(action.payload)
+      state.currencies.push(action.payload);
     }
   },
 

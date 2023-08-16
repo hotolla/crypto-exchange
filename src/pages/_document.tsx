@@ -1,4 +1,4 @@
-import { Html, Head, Main, NextScript } from 'next/document'
+import { Html, Head, Main, NextScript } from 'next/document';
 import { initI18n } from '../components/i18n';
 import { useEffect } from 'react';
 
@@ -17,5 +17,5 @@ export default function Document() {
         <NextScript />
       </body>
     </Html>
-  )
+  );
 }

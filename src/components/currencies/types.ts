@@ -15,7 +15,7 @@ export const ICurrencyState: ICurrency = {
   priceUsd: '',
   changePercent24Hr: '',
   volumeUsd24Hr: '',
-  marketCapUsd: '',
+  marketCapUsd: ''
 };
 
 export interface ICurrencyHistory {
@@ -28,4 +28,4 @@ export interface ICurrencyCode {
 
 export const ICurrencyCodeState: ICurrencyCode =  {
   code: 'EUR'
-}
+};

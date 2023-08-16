@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import type { AppProps } from 'next/app';
-import { CacheProvider } from "@emotion/react";
+import { CacheProvider } from '@emotion/react';
 import i18next from 'i18next';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { darkTheme, lightTheme } from '../themes/themes';
 import { Layout } from '@/components/Layout';
-import createEmotionCache from "../themes/createEmotionCache";
+import createEmotionCache from '../themes/createEmotionCache';
 
 const clientSideEmotionCache = createEmotionCache();
 

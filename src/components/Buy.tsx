@@ -1,9 +1,11 @@
-import { Button, Grid, InputAdornment, MenuItem, TextField, Typography } from "@mui/material";
-import { ChangeEvent, useState } from "react";
-import { fetchExchangeRates } from "@/api/exchangeRates";
+import { Button, Grid, InputAdornment, MenuItem, TextField, Typography } from '@mui/material';
+// import { ChangeEvent, useState } from 'react';
+import { fetchExchangeRates } from '@/api/exchangeRates';
+import { ChangeEvent, useState } from 'react';
 
 interface IProps {
   priceUsd: number,
+  symbol: string
 };
 
 enum CurrencyCode {
@@ -15,41 +17,45 @@ enum CurrencyCode {
 const currencies = [
   {
     value: CurrencyCode.USD,
-    label: '$',
+    label: '$'
   },
   {
     value: CurrencyCode.EUR,
-    label: '€',
+    label: '€'
   },
   {
     value: CurrencyCode.PLN,
-    label: 'zł',
-  },
+    label: 'zł'
+  }
 ];
 
-export const Buy = ({ priceUsd }: IProps) => {
+export const Buy = ({ priceUsd, symbol }: IProps) => {
 	const [ currencyAmount, setCurrencyAmount ] = useState(20);
-	const [ currency, setCurrency ] = useState(CurrencyCode.USD);
-	const [ exchangeRate, setExchangeRate ] = useState(0);
+  const [ currency, setCurrency ] = useState(CurrencyCode.USD);
+	const [ exchangeRate, setExchangeRate ] = useState(1);
 	const [ cryptoAmount, setCryptoAmount ] = useState(currencyAmount / priceUsd);
+  const [ estimatedPrice, setEstimatedPrice ] = useState(priceUsd)
+  const handleCurrencyAmountChange = ({target: {value}}: ChangeEvent<HTMLInputElement>) => {
 
-  const handleCurrencyAmountChange = ({ target: { value }}: ChangeEvent<HTMLInputElement>) => {
     setCurrencyAmount(+value);
-    setCryptoAmount(+value / priceUsd);
+    let buyPrice = priceUsd * exchangeRate;
+    setCryptoAmount(+value / buyPrice);
+    console.log(value, priceUsd, exchangeRate);
+    setEstimatedPrice(priceUsd * exchangeRate)
   };
 
-  const handleCurrencyChange = ({ target: { value }}: ChangeEvent<HTMLInputElement>) => {
+  const handleCurrencyChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
     setCurrency(value as CurrencyCode);
     fetchExchangeRates({
       params: {
-        currencies: value,
+        currencies: value
       }
     }).then(({ data }) => {
-      console.log(data);
       setExchangeRate(data[value]);
-    })
+      setCryptoAmount((currencyAmount / data[value]) / priceUsd )
+      setEstimatedPrice(priceUsd * data[value])
+    });
   };
-  // console.log({exchangeRate});
   return (
 		<>
 			<Grid
@@ -110,7 +116,7 @@ export const Buy = ({ priceUsd }: IProps) => {
 				</Grid>
 		</Grid>
 
-    <Typography textAlign="center" mt={2}>Estimated price: 1 USD ≈ {exchangeRate}{currency}</Typography>
+    <Typography textAlign="center" mt={2}>Estimated price: 1 {symbol} ≈ {estimatedPrice}  {currency}</Typography>
 	</>
 	);
 };

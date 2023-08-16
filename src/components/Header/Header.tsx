@@ -19,8 +19,8 @@ import { LangSwitcher } from './LangSwitcher';
 import LoginIcon from '@mui/icons-material/Login';
 import Link from 'next/link';
 
-const pages = ['Currencies', 'Trade', 'Orders'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const pages = [ 'Currencies', 'Trade', 'Orders' ];
+const settings = [ 'Profile', 'Account', 'Dashboard', 'Logout' ];
 
 interface Props {
   isDarkTheme: boolean,
@@ -28,8 +28,8 @@ interface Props {
 }
 
 export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+  const [ anchorElNav, setAnchorElNav ] = React.useState<null | HTMLElement>(null);
+  const [ anchorElUser, setAnchorElUser ] = React.useState<null | HTMLElement>(null);
   // const { t } = useTranslation();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -68,8 +68,8 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
-                <AccountCircleIcon/>
+              <IconButton color="inherit" onClick={handleOpenUserMenu}>
+                <AccountCircleIcon />
               </IconButton>
             </Tooltip>
             <Menu
@@ -78,12 +78,12 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
               anchorEl={anchorElUser}
               anchorOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'right'
               }}
               keepMounted
               transformOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'right'
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
@@ -96,7 +96,10 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
             </Menu>
           </Box>
 
-         < Link href='/registration' passHref legacyBehavior>
+          <Switch checked={isDarkTheme} onChange={onThemeToggle} />
+          <LangSwitcher />
+
+          <Link href="/registration" passHref legacyBehavior>
             <Button
               color="inherit"
               startIcon={<LoginIcon />}
@@ -104,8 +107,6 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
               Login to account
             </Button>
           </Link>
-          <Switch checked={isDarkTheme} onChange={onThemeToggle} />
-          <LangSwitcher />         
         </Toolbar>
       </Container>
     </AppBar>

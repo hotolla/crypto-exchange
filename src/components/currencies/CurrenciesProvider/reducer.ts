@@ -1,6 +1,6 @@
-import { ICurrency } from "../types";
-import { ICurrenciesState } from "./initialState";
-import { Types } from "./types";
+import { ICurrency } from '../types';
+import { ICurrenciesState } from './initialState';
+import { Types } from './types';
 
 export type Action =
   | { type: Types.FetchCurrencies; payload: ICurrency[]}

@@ -1,5 +1,5 @@
-import { Box, Button, Grid, InputAdornment, MenuItem, Select, TextField, Typography, styled } from "@mui/material";
-import { ChangeEvent, useState } from "react";
+import { Box, Button, Grid, InputAdornment, MenuItem, Select, TextField, Typography, styled } from '@mui/material';
+import { ChangeEvent, useState } from 'react';
 
 interface IProps {
   priceUsd: number,
@@ -8,23 +8,23 @@ interface IProps {
 const currencies = [
   {
     value: 'USD',
-    label: '$',
+    label: '$'
   },
   {
     value: 'EUR',
-    label: '€',
+    label: '€'
   },
   {
     value: 'BTC',
-    label: '฿',
-  },
+    label: '฿'
+  }
 ];
 
 export const Crypto = ({ priceUsd }: IProps) => {
 	const [ currencyAmount, setCurrencyAmount ] = useState(20);
 	const [ cryptoAmount, setCryptoAmount ] = useState(currencyAmount / priceUsd);
 
-  const handleCurrencyAmountChange = ({ target: { value }}: ChangeEvent<HTMLInputElement>) => {
+  const handleCurrencyAmountChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
     setCurrencyAmount(+value);
     setCryptoAmount(+value / priceUsd);
   };

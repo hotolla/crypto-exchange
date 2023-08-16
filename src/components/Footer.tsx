@@ -1,4 +1,4 @@
-import { Divider, Typography } from "@mui/material"
+import { Divider, Typography } from '@mui/material';
 
 export const Footer = () => {
   return (
@@ -6,5 +6,5 @@ export const Footer = () => {
       <Divider/>
       <Typography variant="h6" align="center"> Crypto-exchange © 2023</Typography>
     </>
-  )
+  );
 };

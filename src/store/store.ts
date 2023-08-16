@@ -6,12 +6,12 @@ import currenciesReducer from './currenciesSlice';
 
 export const store = configureStore({
   reducer: {
-    currencies: currenciesReducer,
-  },
+    currencies: currenciesReducer
+  }
 });
 
-export const useAppDispatch: () => typeof store.dispatch = useDispatch
-export const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> = useSelector
+export const useAppDispatch: () => typeof store.dispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> = useSelector;
 
 // export type RootState = ReturnType<typeof store.getState>
 // export type AppDispatch = typeof store.dispatch

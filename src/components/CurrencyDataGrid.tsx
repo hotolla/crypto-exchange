@@ -12,8 +12,11 @@ import { changePercent } from '@/helpers/changePercent';
 import { initialState } from './currencies/CurrenciesProvider/initialState';
 import { CryptoChart } from './СryptoСhart';
 import { fetchCurrency, fetchCurrencyCandles } from '@/api/currencies';
-import { timeParse } from "d3-time-format";
+import { timeParse } from 'd3-time-format';
 import { Buy } from './Buy';
+import { Chat } from "@/components/Chat";
+import NewChat from "@/components/newChat/NewChat";
+import {ChatJS} from "@/components/ChatFromLearnJS/Server";
 
 const columns = [
   { field: 'symbol', headerName: 'Symbol', width: 80, cellClassName: 'symbol' },
@@ -31,9 +34,9 @@ const columns = [
 
       return clsx('color', {
         negative: params.value < 0,
-        positive: params.value > 0,
+        positive: params.value > 0
       });
-    },
+    }
   },
   { field: 'volumeUsd24Hr', headerName: 'Volume Usd 24Hr', width: 120 },
   { field: 'marketCapUsd', headerName: 'market capital. Usd', width: 120 },
@@ -42,8 +45,8 @@ const columns = [
     headerName: '',
     width: 80,
     renderCell: (currency: any) => 
-    <Link href={`/markets/${currency.id}`} color='info.main'><Button>Buy</Button></Link>,
-  },
+    <Link href={`/markets/${currency.id}`} color="info.main"><Button>Buy</Button></Link>
+  }
 ];
 
 export const CurrencyDataGrid = () => {
@@ -58,7 +61,6 @@ export const CurrencyDataGrid = () => {
         .then(({ data }: { data: ICurrency }) => {
           setCurrency(data);
         });
-    
     fetchCurrencyCandles(query.id.toString())
       .then(( data : ICurrencyHistory [] ) => {
         setHistory(data.map(([ date, open, high, low, close ] : any) => ({
@@ -86,14 +88,14 @@ export const CurrencyDataGrid = () => {
         marginTop: 8,
         marginBottom: 4,
         '& .color.negative': {
-          color: 'error.main',
+          color: 'error.main'
         },
         '& .color.positive': {
-          color: 'success.main',
+          color: 'success.main'
         },
         '& .symbol': {
-          fontWeight: 'bold',
-        },
+          fontWeight: 'bold'
+        }
       }}
     >
       <DataGrid
@@ -106,7 +108,7 @@ export const CurrencyDataGrid = () => {
           baseCheckbox: {
             icon: <StarBorderIcon />,
             checkedIcon: <StarIcon />
-          },
+          }
         }
       }
       />
@@ -119,7 +121,10 @@ export const CurrencyDataGrid = () => {
       ) : (
         <CryptoChart data={history} />
       )}
-      <Buy priceUsd={+currency.priceUsd}/>
+      <Buy priceUsd={+currency.priceUsd} symbol={currency.symbol} />
+      <Chat />
+      {/*<NewChat />*/}
+      {/*<ChatJS />*/}
     </Box>
   );
-}
+};

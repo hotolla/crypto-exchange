@@ -1,4 +1,4 @@
-import { GridValueFormatterParams } from "@mui/x-data-grid";
+import { GridValueFormatterParams } from '@mui/x-data-grid';
 
 export const changePercent = ( params : GridValueFormatterParams) => {
   if (params.value == null) {

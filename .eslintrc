@@ -1,8 +1,6 @@
-{ 
+{
   "extends": [
-    "react-app",
-    "next/babel",
-    "next/core-web-vitals"
+    "next"
   ],
   "plugins": [
     "import"

@@ -38,7 +38,7 @@ i18next
       },
       [languagesMap.ua]: {
         translation: ua
-      },
+      }
     }
   }, () => {
     handleLangChange(i18next.language);

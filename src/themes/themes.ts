@@ -4,23 +4,23 @@ export const lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#000080',
+      main: '#000080'
     },
     secondary: {
-      main: '#ffb300',
+      main: '#ffb300'
     },
     info: {
-      main: '#8ee2f1',
+      main: '#8ee2f1'
     },
     error: {
-      main: '#ec4343',
+      main: '#ec4343'
     },
     success: {
-      main: '#2b6e22',
+      main: '#2b6e22'
     },
     background: {
-      default: '#FFFFFF',
-    },
+      default: '#FFFFFF'
+    }
   },
   typography: {
     caption: {
@@ -38,15 +38,6 @@ export const lightTheme = createTheme({
     button: {
       fontWeight: 600
     }
-  },
-  components: {
-    MuiSvgIcon: {
-      styleOverrides: {
-        root: {
-          color: '#FFFFFF'
-        }
-      }
-    }
   }
 });
 
@@ -54,22 +45,22 @@ export const darkTheme = createTheme({
   palette: {
     mode: 'dark',
     primary: {
-      main: '#f5f0e8',
+      main: '#f5f0e8'
     },
     secondary: {
-      main: '#ffb300',
+      main: '#ffb300'
     },
     info: {
-      main: '#8ee2f1',
+      main: '#8ee2f1'
     },
     error: {
-      main: '#ec4343',
+      main: '#ec4343'
     },
     success: {
-      main: '#affdb1',
+      main: '#affdb1'
     },
     background: {
-      default: '#181A20',
-    },
-  },
+      default: '#181A20'
+    }
+  }
 });
