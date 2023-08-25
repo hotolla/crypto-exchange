@@ -5,35 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d810f563-3214-4798-9f67-8f1d4f66a81e" name="Changes" comment="refactored">
-      <change beforePath="$PROJECT_DIR$/.eslintrc.json" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/currencies.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/currencies.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/api/exchangeRates.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/api/exchangeRates.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Buy.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Buy.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Crypto.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Crypto.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Chat/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Chat/Chat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Chat/type.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChatFromLearnJS/ChatJS.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ChatFromLearnJS/Server.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/CurrencyDataGrid.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/CurrencyDataGrid.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Footer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/PageWithJSbasedForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/PageWithJSbasedForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/PageWithJSbasedForm.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/currencies/Currencies.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/currencies/Currencies.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/currencies/CurrenciesProvider/CurrenciesProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/currencies/CurrenciesProvider/CurrenciesProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/currencies/CurrenciesProvider/initialState.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/currencies/CurrenciesProvider/initialState.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/currencies/CurrenciesProvider/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/currencies/CurrenciesProvider/reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/currencies/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/currencies/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/i18n/i18n.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/i18n/i18n.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/СryptoСhart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/СryptoСhart.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/changePercent.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/helpers/changePercent.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/newChat/NewChat.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/_app.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_app.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/_document.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/_document.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/api/hello.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/api/hello.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/markets/[id].tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/markets/[id].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/currenciesSlice.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/currenciesSlice.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/store.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/store.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/themes/createEmotionCache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/createEmotionCache.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/themes/themes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/themes/themes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/registration/index.tsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,8 +35,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -98,13 +90,19 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Work\crypto-exchange\src\pages" />
+      <recent name="D:\Work\crypto-exchange\src\components" />
+      <recent name="D:\Work\crypto-exchange\src\components\Registration" />
+      <recent name="D:\Work\crypto-exchange\src\pages\main" />
       <recent name="D:\Work\crypto-exchange" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Work\crypto-exchange\src\components" />
+      <recent name="D:\Work\crypto-exchange" />
+      <recent name="D:\Work\crypto-exchange\src" />
     </key>
   </component>
-  <component name="RunManager" selected="npm.lint-fix">
+  <component name="RunManager" selected="npm.dev">
     <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -125,6 +123,16 @@
       <envs />
       <method v="2" />
     </configuration>
+    <configuration name="devServer" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="devServer" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <configuration name="lint-fix" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
@@ -135,11 +143,11 @@
       <envs />
       <method v="2" />
     </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+    <configuration name="server" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
       <package-json value="$PROJECT_DIR$/package.json" />
       <command value="run" />
       <scripts>
-        <script value="start" />
+        <script value="server" />
       </scripts>
       <node-interpreter value="project" />
       <envs />
@@ -148,9 +156,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="npm.dev" />
-        <item itemvalue="npm.build" />
-        <item itemvalue="npm.start" />
+        <item itemvalue="npm.devServer" />
+        <item itemvalue="npm.server" />
         <item itemvalue="npm.lint-fix" />
+        <item itemvalue="npm.build" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +190,23 @@
       <workItem from="1692024695303" duration="2692000" />
       <workItem from="1692135142831" duration="3477000" />
       <workItem from="1692170526338" duration="10375000" />
-      <workItem from="1692209798320" duration="2545000" />
+      <workItem from="1692209798320" duration="8375000" />
+      <workItem from="1692263471680" duration="9771000" />
+      <workItem from="1692300948483" duration="7541000" />
+      <workItem from="1692353749458" duration="8073000" />
+      <workItem from="1692371882047" duration="2949000" />
+      <workItem from="1692395748601" duration="597000" />
+      <workItem from="1692399618030" duration="3061000" />
+      <workItem from="1692541286304" duration="1318000" />
+      <workItem from="1692563235384" duration="7839000" />
+      <workItem from="1692610691336" duration="7401000" />
+      <workItem from="1692690888957" duration="13619000" />
+      <workItem from="1692804536197" duration="2495000" />
+      <workItem from="1692826262916" duration="5200000" />
+      <workItem from="1692877258953" duration="7751000" />
+      <workItem from="1692894253724" duration="7245000" />
+      <workItem from="1692955276547" duration="16302000" />
+      <workItem from="1692982419971" duration="1964000" />
     </task>
     <task id="LOCAL-00001" summary="refactored">
       <created>1689850973024</created>
@@ -222,16 +247,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactored" />
     <option name="LAST_COMMIT_MESSAGE" value="refactored" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/components/Chat/Chat.tsx</url>
-          <line>70</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

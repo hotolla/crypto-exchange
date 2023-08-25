@@ -10,70 +10,75 @@ import {
   Paper,
   TextField,
   Typography,
-  AppBar,
-} from "@mui/material";
+  AppBar
+} from '@mui/material';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp';
 import SendIcon from '@mui/icons-material/Send';
-import {KeyboardEventHandler, useEffect, useRef, useState} from "react";
-import { IChatMessage, Message} from "@/components/Chat/type";
-import Toolbar from "@mui/material/Toolbar";
-import {InputProps as StandardInputProps} from "@mui/material/Input/Input";
+import { KeyboardEventHandler, useEffect, useRef, useState } from 'react';
+import Toolbar from '@mui/material/Toolbar';
+import { InputProps as StandardInputProps } from '@mui/material/Input/Input';
+import {socket} from "@/socket";
+
+export interface IChatMessage {
+  user: string;
+  message: string;
+}
 
 export const Chat = () => {
+  const [ isConnected, setIsConnected] = useState(socket.connected);
   const [ chatMessages, setChatMessages ] = useState<IChatMessage[]>([]);
-  const [ user, setUser] = useState('');
-  const [ message, setMessage] = useState<Message>('');
+  const [ user, setUser] = useState<IChatMessage['user']>('');
+  const [ message, setMessage] = useState<IChatMessage['message']>('');
   const scrollBottomRef = useRef(null);
-  const webSocket = useRef(new WebSocket(`${process.env.NEXT_PUBLIC_WS_LOCALHOST}`));
   const ENTER_KEY_CODE = 13;
 
   useEffect(() => {
-    console.log('Opening WebSocket');
-    const openWebSocket = () => {
-      webSocket.current.onopen = (event) => {
-        console.log('Open:', event);
-      }
-      webSocket.current.onclose = (event) => {
-        console.log('Close:', event);
-      }
+    function onConnect() {
+      setIsConnected(true);
     }
-    openWebSocket();
-      webSocket.current.onmessage = ( { data }) => {
-        setChatMessages((messages) => {
-          return [ JSON.parse(data), ...messages ];
-        });
-        // console.log(chatMessages);
-      };
+
+    function onDisconnect() {
+      setIsConnected(false);
+    }
+
+    function handleMessage(value: IChatMessage) {
+      setChatMessages(previous => [...previous, value]);
+      console.log(chatMessages);
+    }
+    console.log(user, message);
+
+
+    socket.on('connect', onConnect);
+    socket.on('disconnect', onDisconnect);
+    socket.on('message', handleMessage);
 
     return () => {
-      console.log('Closing WebSocket');
-      if (webSocket.current.readyState === 1) {
-        webSocket.current.close();
-      }
-    }
+      socket.off('connect', onConnect);
+      socket.off('disconnect', onDisconnect);
+      socket.off('message', handleMessage);
+    };
   }, []);
 
   const handleUserChange:StandardInputProps['onChange'] = (event) => {
     setUser(event.target.value);
-  }
+  };
 
   const handleMessageChange:StandardInputProps['onChange'] = (event) => {
     setMessage(event.target.value);
-  }
+  };
 
   const handleEnterKey: KeyboardEventHandler<HTMLDivElement> = (event) => {
     if(event.keyCode === ENTER_KEY_CODE){
       sendMessage(event);
     }
-  }
+  };
   const sendMessage = (event:   any) => {
-    if(user && message) {
-      console.log(event, chatMessages);
-      webSocket.current.send(JSON.stringify({
-        user,
-        message
-      }));
-    }
+    // if(user && message) {
+    //   webSocket.current.send(JSON.stringify({
+    //     user,
+    //     message
+    //   }));
+    // }
   };
 
   return (
@@ -82,7 +87,7 @@ export const Chat = () => {
       <AppBar position="static">
         <Toolbar>
           <LiveHelpIcon fontSize={'large'}/>
-          <Typography variant="h6" align='center'>
+          <Typography variant="h6" align="center">
             Chat with personal assistant
           </Typography>
         </Toolbar>
@@ -93,7 +98,7 @@ export const Chat = () => {
           <Typography variant="h4" gutterBottom>
             I am your personal assistant. How can I help you?
           </Typography>
-          <Grid container spacing={2} alignItems='center'>
+          <Grid container spacing={2} alignItems="center">
 
             <Grid xs={2} item>
               <FormControl fullWidth>
@@ -137,4 +142,4 @@ export const Chat = () => {
       </Paper>
     </Box>
   );
-}
+};

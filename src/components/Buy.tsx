@@ -34,14 +34,14 @@ export const Buy = ({ priceUsd, symbol }: IProps) => {
   const [ currency, setCurrency ] = useState(CurrencyCode.USD);
 	const [ exchangeRate, setExchangeRate ] = useState(1);
 	const [ cryptoAmount, setCryptoAmount ] = useState(currencyAmount / priceUsd);
-  const [ estimatedPrice, setEstimatedPrice ] = useState(priceUsd)
-  const handleCurrencyAmountChange = ({target: {value}}: ChangeEvent<HTMLInputElement>) => {
+  const [ estimatedPrice, setEstimatedPrice ] = useState(priceUsd);
+  const handleCurrencyAmountChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
 
     setCurrencyAmount(+value);
     let buyPrice = priceUsd * exchangeRate;
     setCryptoAmount(+value / buyPrice);
     console.log(value, priceUsd, exchangeRate);
-    setEstimatedPrice(priceUsd * exchangeRate)
+    setEstimatedPrice(priceUsd * exchangeRate);
   };
 
   const handleCurrencyChange = ({ target: { value } }: ChangeEvent<HTMLInputElement>) => {
@@ -52,8 +52,8 @@ export const Buy = ({ priceUsd, symbol }: IProps) => {
       }
     }).then(({ data }) => {
       setExchangeRate(data[value]);
-      setCryptoAmount((currencyAmount / data[value]) / priceUsd )
-      setEstimatedPrice(priceUsd * data[value])
+      setCryptoAmount((currencyAmount / data[value]) / priceUsd );
+      setEstimatedPrice(priceUsd * data[value]);
     });
   };
   return (

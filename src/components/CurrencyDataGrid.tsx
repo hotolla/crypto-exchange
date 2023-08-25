@@ -14,9 +14,7 @@ import { CryptoChart } from './СryptoСhart';
 import { fetchCurrency, fetchCurrencyCandles } from '@/api/currencies';
 import { timeParse } from 'd3-time-format';
 import { Buy } from './Buy';
-import { Chat } from "@/components/Chat";
-import NewChat from "@/components/newChat/NewChat";
-import {ChatJS} from "@/components/ChatFromLearnJS/Server";
+import { Chat } from '@/components/Chat';
 
 const columns = [
   { field: 'symbol', headerName: 'Symbol', width: 80, cellClassName: 'symbol' },
@@ -88,10 +86,10 @@ export const CurrencyDataGrid = () => {
         marginTop: 8,
         marginBottom: 4,
         '& .color.negative': {
-          color: 'error.main'
+          color: 'error.registration'
         },
         '& .color.positive': {
-          color: 'success.main'
+          color: 'success.registration'
         },
         '& .symbol': {
           fontWeight: 'bold'

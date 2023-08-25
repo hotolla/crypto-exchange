@@ -1,12 +1,19 @@
 import { Footer } from './Footer';
 import { Header } from './Header';
+import { Box } from '@mui/material';
 
 export const Layout = ({ children, isDarkTheme, onThemeToggle }: any) => {
 	return (
-		<>
+		<Box display="flex" flexDirection="column" height="100vh">
 			<Header isDarkTheme={isDarkTheme} onThemeToggle={onThemeToggle}/>
+
+			<Box flexGrow={1} overflow="auto">
 				{children}
-			<Footer />
-		</>
+			</Box>
+
+			<Box flexShrink={0}>
+				<Footer />
+			</Box>
+		</Box>
 	);
 };

@@ -25,8 +25,9 @@ export const fetchCurrency = (id: ICurrency['id'], cofig?: AxiosRequestConfig) =
 // };
 
 export const fetchCurrencyCandles = (id: ICurrency['id'], config?: AxiosRequestConfig) => {
-  return axios.get('https://api.coingecko.com/api/v3/coins/bitcoin/ohlc?vs_currency=usd&days=7', config).then(({ data }) => {
-    return data;
+  return axios.get('https://api.coingecko.com/api/v3/coins/bitcoin/ohlc?vs_currency=usd&days=7',config)
+    .then(({ data }) => {
+      return data;
   });
 };
 

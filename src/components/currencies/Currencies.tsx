@@ -60,10 +60,10 @@ export const Currencies = () => {
       marginTop: 4,
       marginBottom: 4,
       '& .color.negative': {
-        color: 'error.main'
+        color: 'error.registration'
       },
       '& .color.positive': {
-        color: 'success.main'
+        color: 'success.registration'
       },
       '& .symbol': {
         fontWeight: 'bold'

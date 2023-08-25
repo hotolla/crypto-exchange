@@ -18,7 +18,8 @@ import { Switch } from '@mui/material';
 import { LangSwitcher } from './LangSwitcher';
 import LoginIcon from '@mui/icons-material/Login';
 import Link from 'next/link';
-
+import * as authApi from '../../api/auth';
+import { useState } from 'react';
 const pages = [ 'Currencies', 'Trade', 'Orders' ];
 const settings = [ 'Profile', 'Account', 'Dashboard', 'Logout' ];
 
@@ -26,12 +27,15 @@ interface Props {
   isDarkTheme: boolean,
   onThemeToggle: () => void,
 }
+interface IUser {
+  name: string,
+  email: string,
+};
 
 export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
   const [ anchorElNav, setAnchorElNav ] = React.useState<null | HTMLElement>(null);
   const [ anchorElUser, setAnchorElUser ] = React.useState<null | HTMLElement>(null);
-  // const { t } = useTranslation();
-
+  const [ user, setUser ] = useState<IUser>();
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -47,12 +51,19 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
     setAnchorElUser(null);
   };
 
+  const defineUser  = (user: IUser) => {
+    authApi.login(user).then(() => {
+      console.log(user);
+      return user;
+    });
+  };
+
   return (
     <AppBar position="fixed">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
             <CurrencyBitcoinIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}/>
-            <Typography variant="h5" align="center">Crypto exchange</Typography>
+            <Typography variant="h5" align="center" mr={6}>Crypto exchange</Typography>
           
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -67,7 +78,7 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title={user?.name}>
               <IconButton color="inherit" onClick={handleOpenUserMenu}>
                 <AccountCircleIcon />
               </IconButton>
@@ -99,10 +110,11 @@ export const Header = ({ isDarkTheme, onThemeToggle }: Props) => {
           <Switch checked={isDarkTheme} onChange={onThemeToggle} />
           <LangSwitcher />
 
-          <Link href="/registration" passHref legacyBehavior>
+          <Link href="/login" passHref legacyBehavior>
             <Button
               color="inherit"
               startIcon={<LoginIcon />}
+              onClick={() => defineUser}
             >
               Login to account
             </Button>

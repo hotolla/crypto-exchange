@@ -4,27 +4,32 @@ import type { AppProps } from 'next/app';
 import { CacheProvider } from '@emotion/react';
 import i18next from 'i18next';
 import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
-import { darkTheme, lightTheme } from '../themes/themes';
+import { darkTheme, lightTheme } from '@/themes/themes';
 import { Layout } from '@/components/Layout';
 import createEmotionCache from '../themes/createEmotionCache';
 
 const clientSideEmotionCache = createEmotionCache();
+const isDarkThemeKey = 'isDarkTheme';
+let item = false;
 
 export default function App({
   Component,
   emotionCache = clientSideEmotionCache,
   pageProps
 }: AppProps & any) {
-  const [ isDarkTheme, setIsDarkTheme ] = useState(false);
+  const [ isDarkTheme, setIsDarkTheme ] = useState(item);
   const [ locale, setLocale ] = useState(i18next.language);
-  const theme = isDarkTheme ? darkTheme : lightTheme;
 
   const handleChangeTheme = useCallback(() => {
-    setIsDarkTheme((isDarkTheme) => !isDarkTheme);
+    setIsDarkTheme((isDarkTheme) => {
+      if (typeof window !== 'undefined') localStorage.setItem(isDarkThemeKey, `${isDarkTheme}`);
+
+      return !isDarkTheme;
+    });
   }, [ isDarkTheme ]);
 
   useEffect(() => {
+    item = localStorage.getItem(isDarkThemeKey) === 'false';
     const handleLanguageChange = () => {
       setLocale(i18next.language);
     };
@@ -38,7 +43,7 @@ export default function App({
   
   return (
     <CacheProvider value={emotionCache}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
         <CssBaseline />
       <LocalizationProvider adapterLocale={locale}>
         <Layout isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}>

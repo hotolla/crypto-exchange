@@ -11,7 +11,8 @@ export const fetchExchangeRates = (config?: AxiosRequestConfig) => {
 };
 
 // export const fetchExchangeRates = (config?: AxiosRequestConfig) => {
-//   return axios.get(`https://api.freecurrencyapi.com/v1/latest?apikey=u4fOT74Ev0O5E3p2LGKWNQF5cy6CTnKykEG4QaZR&currencies=EUR`,
+//   return axios.get(
+//   `https://api.freecurrencyapi.com/v1/latest?apikey=u4fOT74Ev0O5E3p2LGKWNQF5cy6CTnKykEG4QaZR&currencies=EUR`,
 //   config).then(({ data}) => {
 //   return data;
 //   })
