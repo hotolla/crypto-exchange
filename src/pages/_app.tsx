@@ -7,6 +7,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { darkTheme, lightTheme } from '@/themes/themes';
 import { Layout } from '@/components/Layout';
 import createEmotionCache from '../themes/createEmotionCache';
+import { AuthProvider } from '@/components/AuthProvider';
+import { PrivateRoute } from '../modules/auth/PrivateRoute';
 
 const clientSideEmotionCache = createEmotionCache();
 const isDarkThemeKey = 'isDarkTheme';
@@ -30,26 +32,31 @@ export default function App({
 
   useEffect(() => {
     item = localStorage.getItem(isDarkThemeKey) === 'false';
-    const handleLanguageChange = () => {
-      setLocale(i18next.language);
-    };
+    // const handleLanguageChange = () => {
+    //   setLocale(i18next.language);
+    // };
+    //
+    // i18next.on('languageChanged', handleLanguageChange);
 
-    i18next.on('languageChanged', handleLanguageChange);
-
-    return () => {
-      i18next.off('languageChanged', handleLanguageChange);
-    };
+    // return () => {
+    //   i18next.off('languageChanged', handleLanguageChange);
+    // };
   }, []);
   
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={isDarkTheme ? darkTheme : lightTheme}>
         <CssBaseline />
-      <LocalizationProvider adapterLocale={locale}>
-        <Layout isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}>
-          <Component {...pageProps} />
-        </Layout>
-      </LocalizationProvider>
+
+        <LocalizationProvider adapterLocale={locale}>
+          <AuthProvider>
+            <PrivateRoute>
+              <Layout isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}>
+                <Component {...pageProps} />
+              </Layout>
+            </PrivateRoute>
+          </AuthProvider>
+        </LocalizationProvider>
       </ThemeProvider>
     </CacheProvider>
   );

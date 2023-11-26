@@ -1,6 +1,6 @@
+import { useEffect } from 'react';
 import { Html, Head, Main, NextScript } from 'next/document';
 import { initI18n } from '../components/i18n';
-import { useEffect } from 'react';
 
 export default function Document() {
   useEffect(() => {
@@ -12,6 +12,7 @@ export default function Document() {
   return (
     <Html lang="en">
       <Head />
+
       <body>
         <Main />
         <NextScript />

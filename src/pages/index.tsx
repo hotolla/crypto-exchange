@@ -1,5 +1,9 @@
+import { Registration } from '@/components/Registration';
+
 export default function Home() {
   return (
-    <h1>Home</h1>
+    <>
+      <Registration />
+    </>
   );
 };

@@ -1,36 +1,59 @@
 import { PropsWithChildren, createContext, useEffect, useReducer } from 'react';
+import { IUser } from '@/modules/users';
 import { initialState, IAuthState } from './initialState';
 import { reducer } from './reducer';
 import { Types } from './types';
-import { IUser } from '../../../../ToDoList/src/modules/users';
+
+export interface ILoginPayload {
+  user: IUser,
+  token: string
+}
 
 interface IAuthProviderValues extends IAuthState {
-  login: (user: IUser) => void;
-};
+  isAuthenticated: boolean;
+  login: (payload: ILoginPayload) => void;
+  logout: () => void;
+}
 
 export const AuthContext = createContext<IAuthProviderValues>({
   ...initialState,
 
-  login: () => {}
+  login: () => {},
+  logout: () => {}
 });
 
-export const AuthProvider = ({ children } : PropsWithChildren) => {
-  const [ state, dispatch ] = useReducer(reducer, initialState);
+const localStorageKey = 'auth';
 
-  const login = (user: IUser) => {
-    dispatch({ type: Types.Login, payload: user });
+export const AuthProvider = ({ children } : PropsWithChildren) => {
+  const [ state, dispatch ] = useReducer(reducer, initialState, () => {
+    if (typeof window !== 'undefined') {
+      const localStorageData = JSON.parse(localStorage.getItem(localStorageKey) || '{}');
+      return localStorageData || initialState;
+    }
+  });
+
+  const login = (payload: ILoginPayload) => {
+    dispatch({ type: Types.Login, payload: payload.user });
   };
-  //
-  // useEffect(() => {
-  //   localStorage.setItem('auth', JSON.stringify(state));
-  // }, [ state ]);
+
+  const logout = () => {
+    console.log(state)
+    // return state;
+    // return initialState;
+    return localStorageKey;
+  };
+
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, JSON.stringify(state));
+  }, [ state ]);
 
   return (
     <AuthContext.Provider
       value={{
         ...state,
 
-        login
+        login,
+        logout
       }}
     >
       {children}

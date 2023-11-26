@@ -1,3 +1,4 @@
 export enum Types {
-  Login = 'LOGIN'
+  Login = 'LOGIN',
+  Logout = 'LOGOUT'
 }

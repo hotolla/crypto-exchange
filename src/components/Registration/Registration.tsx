@@ -1,5 +1,5 @@
 import { useForm, FormProvider } from 'react-hook-form';
-import { Button, Typography, Stack, Container } from '@mui/material';
+import {Button, Typography, Stack, Container, Box, Grid} from '@mui/material';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import * as authApi from '@/api/auth';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +7,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Yup } from '@/validation';
 import { TextField } from '@/components/TextField';
 import { preventDefault } from '@/helpers/preventDefault';
+import {useRouter} from "next/router";
+import Link from "next/link";
+import Image from 'next/image'
+import logo from './crypto_main.png';
 
 interface FormValues {
   name: string | null,
@@ -30,79 +34,120 @@ const schema = Yup.object({
 });
 
 export const Registration = () => {
+  const router = useRouter();
   const form = useForm({
     defaultValues,
     resolver: yupResolver(schema)
   });
 
   const handleSubmit = (values: FormValues) => {
-    authApi.register(values);
+    authApi.register(values)
+    .then(() => {
+        router.push("/markets");
+      });
   };
 
   return (
-    <Container maxWidth="xs">
-      <FormProvider {...form}>
+    <Box mt={10}>
+      <Typography variant="h3" color="primary" align="center" mb={1}>
+        Welcome to crypto exchange!
+      </Typography>
 
-        <Stack sx={{ mt: 20, alignItems: 'center' }}>
-        <Typography variant="h3" color="primary" mb={4}>
-          Welcome to crypto exchange!
-        </Typography>
+      <Grid container justifyContent="center" alignItems="center" spacing={15}>
+        <Grid item>
+          <FormProvider {...form}>
+            <Grid container direction="column" alignItems="center">
+              <Grid item>
+                <Stack alignItems="center">
 
-        <HowToRegIcon color="primary" fontSize="large"/>
+                  <HowToRegIcon color="primary" fontSize="large"/>
 
-        <Typography variant="h5" color="primary" mt={1}>
-          Registering an account:
-        </Typography>
-      </Stack>
+                  <Typography variant="h5" color="primary" mt={1}>
+                    Registering an account:
+                  </Typography>
+                </Stack>
+              </Grid>
 
-      <Stack
-        noValidate
-        spacing={2}
-        mt={4}
-        component="form"
-        onSubmit={preventDefault(form.handleSubmit(handleSubmit))}
-      >
-          <TextField
-            required
-            name="name"
-            label="Name"
-            placeholder="Enter name ..."
-            variant="outlined"
+              <Grid item>
+                <Stack
+                  noValidate
+                  spacing={2}
+                  mt={4}
+                  width={500}
+                  alignItems="center"
+                  component="form"
+                  onSubmit={preventDefault(form.handleSubmit(handleSubmit))}
+                >
+                  <TextField
+                    required
+                    name="name"
+                    label="Name"
+                    placeholder="Enter name ..."
+                    variant="outlined"
+                  />
+
+                  <TextField
+                    required
+                    type="email"
+                    name="email"
+                    label="E-mail address"
+                    placeholder="Enter e-mail ..."
+                  />
+
+                  <TextField
+                    required
+                    type="password"
+                    name="password"
+                    label="Password"
+                    placeholder="Enter password ..."
+                  />
+
+                  <TextField
+                    required
+                    type="password"
+                    name="confirmPassword"
+                    label="Repeat password"
+                    placeholder="Enter password ..."
+                  />
+
+                  <Button
+                    type="submit"
+                    variant="contained"
+                    size="large"
+                  >
+                    Register
+                  </Button>
+
+                  <Typography>
+                    Already have an account?
+                    <Link href="/login" style={{marginLeft: 4}}>Log in</Link>
+                  </Typography>
+                </Stack>
+              </Grid>
+              </Grid>
+          </FormProvider>
+        </Grid>
+
+        <Grid item >
+          <Image
+            priority={true}
+            src="/images/crypto_main.png"
+            alt="logo"
+            width="600"
+            height="400"
           />
 
-          <TextField
-            required
-            type="email"
-            name="email"
-            label="E-mail address"
-            placeholder="Enter e-mail ..."
-          />
-
-          <TextField
-            required
-            type="password"
-            name="password"
-            label="Password"
-            placeholder="Enter password ..."
-          />
-
-          <TextField
-            required
-            type="password"
-            name="confirmPassword"
-            label="Repeat password"
-            placeholder="Enter password ..."
-          />
-
-          <Button
-            type="submit"
-            variant="contained"
-            size="large"
-          >
-            Register
-          </Button>
-      </Stack>
-    </FormProvider>
-    </Container>
+          <Typography variant="h6" mt={2} mb={2} align="center">
+            Sign up to get 100 USD trading fee rebate!
+          </Typography>
+          <Typography variant="subtitle1" align="center">
+            Follow the registration steps to redeem your rewards
+          </Typography>
+          <Typography variant="subtitle1" align="center">
+            and start your crypto journey with us! FAQ
+          </Typography>
+        </Grid>
+      </Grid>
+    </Box>
   );
 };

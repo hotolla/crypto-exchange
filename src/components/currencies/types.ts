@@ -6,7 +6,7 @@ export interface ICurrency {
   changePercent24Hr: string;
   volumeUsd24Hr: string;
   marketCapUsd: string;
-};
+}
 
 export const ICurrencyState: ICurrency = {
   id: '',
@@ -20,7 +20,7 @@ export const ICurrencyState: ICurrency = {
 
 export interface ICurrencyHistory {
   [index: number]: [];
-} ;
+}
 
 export interface ICurrencyCode {
   code: any

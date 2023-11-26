@@ -53,7 +53,7 @@ export const CurrenciesProvider = ({ children }: ICurrenciesProviderProps) => {
   };
   
   useEffect(() => {
-    fetchCurrencies();
+    // fetchCurrencies();
 
     return () => {
       fetchCurrenciesAbortController.current.abort();

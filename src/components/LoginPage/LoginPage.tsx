@@ -1,12 +1,16 @@
 import { useState } from 'react';
+import { Yup } from '@/validation';
+import Link from 'next/link';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Typography, Container, Stack } from '@mui/material';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import { Yup } from '@/validation';
 import * as authApi from '@/api/auth';
 import { TextField } from '@/components/TextField';
+import { useRouter } from 'next/router';
 import { preventDefault } from '@/helpers/preventDefault';
+import { useAuth } from '@/components/AuthProvider';
+
 
 interface FormValues {
   email: string | null,
@@ -25,24 +29,39 @@ const schema = Yup.object({
 
 export const LoginPage = () => {
   const [ isError, setIsError ] = useState(false);
+  const router = useRouter();
   const form = useForm({
     defaultValues,
     resolver: yupResolver(schema)
   });
+  const { login } = useAuth();
 
   const handleSubmit = (values: FormValues) => {
-    console.log(values);
-    authApi.login(values)
-      .catch(() => {
+    authApi.login(values).then((data) => {
+      login(data);
+      router.push('/markets');
+    }).catch(() => {
       setIsError(true);
     });
   };
+  // const handleSubmit2 = () => {
+  //   router.push('/map');
+  // };
+
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     await signIn('google');
+  //     router.push('/markets');
+  //   } catch (error) {
+  //     console.error('Google login error:', error);
+  //     setIsError(true);
+  //   }
+  // };
 
   return (
     <Container maxWidth="xs">
       <FormProvider {...form}>
-
-        <Stack sx={{ mt: 20, alignItems: 'center' }}>
+        <Stack sx={{ mt: 10, alignItems: 'center' }}>
           <Typography variant="h5" color="primary" mb={4}>
             Welcome to crypto exchange!
           </Typography>
@@ -60,7 +79,6 @@ export const LoginPage = () => {
           component="form"
           onSubmit={preventDefault(form.handleSubmit(handleSubmit))}
         >
-
           <TextField
             required
             type="email"
@@ -93,8 +111,24 @@ export const LoginPage = () => {
             Login
           </Button>
 
+          <Typography>
+            <Link href="/registration" style={{ textDecoration: 'none' }}>Forgot your password?</Link>
+          </Typography>
+
+          <Typography>
+            <Link href="/registration" style={{ textDecoration: 'none' }}>Register a new account?</Link>
+          </Typography>
         </Stack>
       </FormProvider>
+
+      {/*<Button*/}
+      {/*  variant="outlined"*/}
+      {/*  startIcon={<AddLocationAltIcon />}*/}
+      {/*  onClick={handleSubmit2}*/}
+      {/*  sx={{mt: 2}}*/}
+      {/*>*/}
+      {/*  see location on the map*/}
+      {/*</Button>*/}
     </Container>
   );
 };
