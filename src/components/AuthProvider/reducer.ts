@@ -4,14 +4,14 @@ import { Types } from './types';
 
 export type Action =
   | { type: Types.Login; payload: IUser }
-  | { type: Types.Logout; payload: IAuthState }
+  | { type: Types.Logout }
 
-export const reducer = (state: IAuthState, { type, payload }: Action) => {
-  switch (type) {
+export const reducer = (state: IAuthState, action: Action) => {
+  switch (action.type) {
     case Types.Login:
       return {
         ...state,
-        ...payload,
+        ...action.payload,
 
         isAuthenticated: true
       };

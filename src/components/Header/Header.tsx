@@ -1,3 +1,5 @@
+import { SigninButton } from '@/components/SigninButton';
+import { useState, useEffect } from 'react';
 import * as React from 'react';
 import Link from 'next/link';
 import {
@@ -31,12 +33,18 @@ export const Header = ({ isDarkTheme, onThemeToggle }: IProps) => {
   const [ anchorElNav, setAnchorElNav ] = React.useState<null | HTMLElement>(null);
   const [ anchorElUser, setAnchorElUser ] = React.useState<null | HTMLElement>(null);
   const { isAuthenticated, user, logout } = useAuth();
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+
     setAnchorElUser(event.currentTarget);
   };
 
@@ -104,7 +112,9 @@ export const Header = ({ isDarkTheme, onThemeToggle }: IProps) => {
           <Switch checked={isDarkTheme} onChange={onThemeToggle} />
           <LangSwitcher />
 
-          {isAuthenticated ? (
+          {/*<SigninButton />*/}
+
+          {isClient && isAuthenticated ? (
             <Button
               color="inherit"
               startIcon={<LoginIcon />}

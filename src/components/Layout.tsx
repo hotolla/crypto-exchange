@@ -1,6 +1,6 @@
+import { Box } from '@mui/material';
 import { Footer } from './Footer';
 import { Header } from './Header';
-import { Box } from '@mui/material';
 
 export const Layout = ({ children, isDarkTheme, onThemeToggle }: any) => {
 	return (

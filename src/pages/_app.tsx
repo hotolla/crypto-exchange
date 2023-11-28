@@ -9,6 +9,7 @@ import { Layout } from '@/components/Layout';
 import createEmotionCache from '../themes/createEmotionCache';
 import { AuthProvider } from '@/components/AuthProvider';
 import { PrivateRoute } from '../modules/auth/PrivateRoute';
+import { SessionProviders } from '@/components/SessionProviders';
 
 const clientSideEmotionCache = createEmotionCache();
 const isDarkThemeKey = 'isDarkTheme';
@@ -50,11 +51,13 @@ export default function App({
 
         <LocalizationProvider adapterLocale={locale}>
           <AuthProvider>
-            <PrivateRoute>
+            {/*<PrivateRoute>*/}
+            <SessionProviders>
               <Layout isDarkTheme={isDarkTheme} onThemeToggle={handleChangeTheme}>
                 <Component {...pageProps} />
               </Layout>
-            </PrivateRoute>
+            {/*</PrivateRoute>*/}
+            </SessionProviders>
           </AuthProvider>
         </LocalizationProvider>
       </ThemeProvider>

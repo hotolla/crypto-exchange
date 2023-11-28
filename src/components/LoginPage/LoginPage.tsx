@@ -1,20 +1,19 @@
 import { useState } from 'react';
-import { Yup } from '@/validation';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useForm, FormProvider } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Typography, Container, Stack } from '@mui/material';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
+import { Yup } from '@/validation';
 import * as authApi from '@/api/auth';
 import { TextField } from '@/components/TextField';
-import { useRouter } from 'next/router';
 import { preventDefault } from '@/helpers/preventDefault';
 import { useAuth } from '@/components/AuthProvider';
 
-
 interface FormValues {
   email: string | null,
-  password: string | null,
+  password: string | null
 }
 
 const defaultValues = {
@@ -44,10 +43,6 @@ export const LoginPage = () => {
       setIsError(true);
     });
   };
-  // const handleSubmit2 = () => {
-  //   router.push('/map');
-  // };
-
   // const handleGoogleLogin = async () => {
   //   try {
   //     await signIn('google');

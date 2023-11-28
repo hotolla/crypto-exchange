@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 import React, { PropsWithChildren } from 'react';
 import { useAuth } from '@/components/AuthProvider';
 

@@ -1,3 +1,5 @@
+'use client'
+
 import { PropsWithChildren, createContext, useEffect, useReducer } from 'react';
 import { IUser } from '@/modules/users';
 import { initialState, IAuthState } from './initialState';
@@ -26,10 +28,13 @@ const localStorageKey = 'auth';
 
 export const AuthProvider = ({ children } : PropsWithChildren) => {
   const [ state, dispatch ] = useReducer(reducer, initialState, () => {
+
     if (typeof window !== 'undefined') {
-      const localStorageData = JSON.parse(localStorage.getItem(localStorageKey) || '{}');
+      const localStorageData = JSON.parse(localStorage?.getItem(localStorageKey) || '{}');
+
       return localStorageData || initialState;
     }
+    return initialState;
   });
 
   const login = (payload: ILoginPayload) => {
@@ -37,10 +42,7 @@ export const AuthProvider = ({ children } : PropsWithChildren) => {
   };
 
   const logout = () => {
-    console.log(state)
-    // return state;
-    // return initialState;
-    return localStorageKey;
+    dispatch({ type: Types.Logout });
   };
 
   useEffect(() => {
